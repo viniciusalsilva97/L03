@@ -14,8 +14,8 @@ User Function L03E21()
     TCQUERY cQuery ALIAS &(cAlias) NEW 
 
     DBSELECTAREA( "SB1" )
-    (DBSETORDER(2))
-    (DBGOTOP())
+    DBSETORDER(2)
+    DBGOTOP()
 
     while &(cAlias) -> (!EOF())
         cTipo  := &(cAlias) -> (B1_TIPO)

@@ -13,9 +13,7 @@ User Function pedidosFornecedor()
 
     PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SC7' MODULO 'COM'
 
-    cQuery := "SELECT C7_NUM" + CRLF
-    cQuery += "FROM " + RetSqlName("SC7") + " SC7 " + CRLF
-    cQuery += "WHERE C7_FORNECE ='" + cCodiFornecedor + "'"
+    cQuery := "SELECT C7_NUM FROM " + RetSqlName("SC7") + " SC7 WHERE C7_FORNECE ='" + cCodiFornecedor + "'"
 
     TCQUERY cQuery ALIAS &(cAlias) NEW
 

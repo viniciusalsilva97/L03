@@ -17,7 +17,7 @@ User Function L03E07()
     dDatIni := DTOS(CTOD(FwInputBox("Digite a data inicial")))
     dDatFim := DTOS(CTOD(FwInputBox("Digite a data final")))
 
-    cQuery := "SELECT C5_NUM FROM " + RetSqlName("SC5") + " SC5 WHERE C5_EMISSAO >= '" + dDatIni + "'" + "AND C5_EMISSAO <='" + dDatFim + "'"
+    cQuery := "SELECT C5_NUM FROM " + RetSqlName("SC5") + " SC5 WHERE C5_EMISSAO BETWEEN " + dDatIni + " AND " + dDatFim 
 
     TCQUERY cQuery ALIAS &(cAlias) NEW
 

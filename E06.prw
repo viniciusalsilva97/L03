@@ -16,7 +16,7 @@ User Function L03E06()
 
     cCar := Upper(FwInputBox("Digite um código e informaremos se ele existe", cCar))
 
-    cQuery := "SELECT SB1990.B1_COD, SB1990.B1_DESC, SB1990.B1_PRV1 FROM SB1990 WHERE SB1990.B1_COD ='" + cCar + "'"
+    cQuery := "SELECT B1_COD, B1_DESC, B1_PRV1 FROM " + retSqlName("SB1") + " SB1 WHERE B1_COD ='" + cCar + "'"
 
     TCQUERY cQuery ALIAS &(cAlias) NEW
 

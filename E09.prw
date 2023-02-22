@@ -7,7 +7,6 @@ User Function L03E09()
     local cAlias          := GetNextAlias()
     local cCar            := ""
     local cMsg            := ""
-    local cCod            := ""
     local cPed            := ""
     local cQuery          := ""
 
@@ -20,15 +19,14 @@ User Function L03E09()
     TCQUERY cQuery ALIAS &(cAlias) NEW
 
     while &(cAlias) -> (!EOF())
-        cCod := &(cAlias) -> (C6_PRODUTO)
         cPed := &(cAlias) -> (C6_NUM)
 
-        cMsg += "Código: " + cValToChar(cCod) + CRLF + "Pedido de Venda: " + cValToChar(cPed) + CRLF + "--------------------------------------------" + CRLF
+        cMsg += cValToChar(cPed) + ", " 
 
         &(cAlias) -> (DbSkip())
     end
     
-    FwAlertInfo(cMsg, 'Pedido de Venda do Código Selecionado')
+    FwAlertInfo(stuff(cMsg, len(cMsg) -1, 2, "."), 'Pedido de Venda do Código Selecionado')
 
     &(cAlias) -> (DbCloseArea())
     restArea(aArea)

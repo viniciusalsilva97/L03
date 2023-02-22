@@ -25,7 +25,7 @@ User Function L03E08()
         cVUn  := &(cAlias) -> (C6_PRCVEN)
         cVTot := &(cAlias) -> (C6_VALOR)
 
-        cMsg += "Código: " + cValToChar(cCod) + CRLF + "Descrição: " + cValToChar(cDes) + CRLF + "Valor Unitário: " + cValToChar(cVUn) + "Valor Total: " + cValToChar(cVTot) + CRLF +"-----------------------------------------------------------------" + CRLF
+        cMsg += "Código: " + cValToChar(cCod) + CRLF + CRLF +"Descrição: " + cValToChar(cDes) + CRLF + CRLF + "Valor Unitário: " + cValToChar(cVUn) + CRLF + CRLF + "Valor Total: " + cValToChar(cVTot) + CRLF +"-----------------------------------------------------------------" + CRLF
 
         &(cAlias) -> (DbSkip())
     end

@@ -3,45 +3,30 @@
 #INCLUDE 'tbiconn.ch'
 
 User Function L03E10()
-    local aArea           := getArea()
-    local cAlias          := GetNextAlias()
-    local nMedia          := 0
-    local nSomaQtd        := 0
-    local nSomaPv         := 0
-    local nCod            := 0
-    local cCar            := ""
-    local cMsg            := ""
-    local cQuery          := ""
+    local aArea  := getArea()
+    local cAlias := GetNextAlias()
+    local nMedia := ""
+    local cCar   := ""
+    local cMsg   := ""
+    local cQuery := ""  
 
     PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SC6' MODULO 'COM'
 
     cCar := Upper(FwInputBox("Digite um código e informaremos a media dos pedidos de venda", cCar))
 
-    cQuery := "SELECT C6_PRODUTO, C6_NUM, C6_QTDVEN FROM " + RetSqlName("SC6") + " SC6 WHERE C6_PRODUTO = '" + cCar + "'"
+    cQuery := "SELECT AVG(C6_QTDVEN) AS MEDIA FROM " + RetSqlName("SC6") + " SC6 WHERE C6_PRODUTO = '" + cCar + "'"
 
     TCQUERY cQuery ALIAS &(cAlias) NEW
 
-    while &(cAlias) -> (!EOF())
+    nMedia := &(cALias) -> (MEDIA)
 
-        nSomaQtd += &(cAlias) -> (C6_QTDVEN)
-        
-        nSomaPv++
-        nCod++
-
-        &(cAlias) -> (DbSkip())
-    end
-
-    nMedia := nSomaQtd / nSomaPv 
-   
-   if nCod == 0
-        cMsg := "Esse código não está cadastrado"
-    elseif nSomaQtd == 0
-        cMsg := "Esse produto não foi vendido"
+    if nMedia == 0
+        cMsg := "Esse produto não foi cadastrado"
     else
-        cMsg += cValToChar(nSomaPv) + " / " + cValToChar(nSomaQtd) + " =  " + cValToChar(Round(nMedia, 2))
-   endif 
+        cMsg := cValToChar(Round(nMedia, 2))
+    endif
    
-    FwAlertInfo(cMsg, 'Média dos Pedidos de Venda para esse Produto')
+    FwAlertInfo(cMsg, 'Média dos Pedidos de Venda')
 
     &(cAlias) -> (DbCloseArea())
     restArea(aArea)

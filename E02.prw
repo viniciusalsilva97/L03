@@ -14,7 +14,7 @@ User Function pedidoVendas()
 
    PREPARE ENVIRONMENT EMPRESA '99' FILIAL '01' TABLES 'SC5' MODULO 'FAT'
 
-   cQuery := "SELECT C5_NUM, C5_CLIENTE, A1_NOME FROM " + retSqlName("SC5") + " SC5 JOIN " + retSqlName("SA1") + " SA1 ON SA1.A1_COD = SC5.C5_CLIENTE WHERE C5_NOTA = '" + cNota + "'"
+   cQuery := "SELECT C5_NUM, C5_CLIENTE, A1_NOME FROM " + retSqlName("SC5") + " SC5 JOIN " + retSqlName("SA1") + " SA1 ON A1_COD = C5_CLIENTE WHERE C5_NOTA = '" + cNota + "'"
 
    TCQUERY cQuery ALIAS &(cAlias) NEW 
 

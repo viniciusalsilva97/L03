@@ -11,7 +11,7 @@ User Function tempMedia()
     local cMsg := ''
 
     for nCont := 1 to NULTIMOMES
-        nTempMes := Val(FwInputBox("Qual é a temperatura desse mês"))
+        nTempMes := Val(FwInputBox("Qual é a temperatura de " + mesextenso(nCont)))
         nSomaMedia += nTempMes
         AADD( aTemperatura, nTempMes )
     next

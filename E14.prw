@@ -1,17 +1,18 @@
 #INCLUDE 'totvs.ch'
 
+#DEFINE NMAX 5
 User Function numerosInteiros()
     local nNum
     local aInt := { }
-    local cMsg := 'Números selecionados' + CRLF + CRLF
+    local cMsg := 'Números selecionados:' + CRLF + CRLF
     local nCont
 
-    for nCont := 1 to 5
-        nNum := Randomize(1, 10)
+    for nCont := 1 to NMAX 
+        nNum := Randomize(1, 80)
         AADD( aInt, nNum )
-        cMsg += cValToChar(aInt[nCont]) + ",  "
+        cMsg += cValToChar(aInt[nCont]) + ", "
     next
 
-    FwAlertSuccess(cMsg)
+    FwAlertSuccess(stuff(cMsg, len(cMsg) -1, 2, "."))
 
 Return 
